@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Africtivistes Citizen Lab Mauritanie
+  site: 'https://citizenlabmauritanie-v2.netlify.app'
   base: '/'
   trailingSlash: false
 
@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Africtivistes Citizen Lab Mauritanie
+    template: '%s — Africtivistes'
+  description: "AfricTivistes CitizenLab Mauritanie 🇲🇷 est une fabrique citoyenne dont le but est d’appuyer, d’accompagner et d’outiller les acteurs de la société civile mauritanienne par la formation, le développement d’outils et l’accompagnement à l’innovation et à la co-création."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Africtivistes Citizen Lab Mauritanie
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: '@CitizenLab_RIM'
+    site: '@CitizenLab_RIM'
     cardType: summary_large_image
 
 i18n:
@@ -63,7 +63,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: G-NG19Q65D5Z # or "G-XXXXXXXXXX"
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
