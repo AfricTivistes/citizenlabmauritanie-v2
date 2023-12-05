@@ -4,6 +4,7 @@
   "version": "1.0.0-beta.6",
   "private": true,
   "scripts": {
+    "prebuild": "npx astro-i18next generate",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",

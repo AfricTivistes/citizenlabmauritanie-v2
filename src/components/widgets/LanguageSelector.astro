@@ -1,0 +1,32 @@
+---
+import i18next from 'i18next';
+import { localizePath, } from 'astro-i18next';
+import ISO6991 from 'iso-639-1';
+// import { log } from 'astro/dist/core/logger/core';
+
+const supportedLanguages = i18next.languages;
+const currentLanguage = i18next.language;
+const { pathname } = Astro.url;
+
+const flags = {
+  ar: '🇲🇷',
+  fr: '🇫🇷',
+};
+---
+
+<select onchange="location = this.value;">
+  {
+    supportedLanguages.map((supportedLanguage: string) => {
+      const flag = flags[supportedLanguage] ? flags[supportedLanguage] + ' ' : '';
+      const nativeName = ISO6991.getNativeName(supportedLanguage);
+      const label = flag + nativeName;
+      const value = localizePath(pathname, supportedLanguage);
+
+      return (
+        <option value={value} selected={supportedLanguage === currentLanguage}>
+          {label}
+        </option>
+      );
+    })
+  }
+</select>

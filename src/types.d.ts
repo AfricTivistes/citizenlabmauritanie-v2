@@ -182,7 +182,7 @@ export interface Disclaimer {
 // COMPONENTS
 export interface CallToAction extends HTMLAttributes<a> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
-  text?: string;
+  text: string;
   icon?: string;
   classes?: Record<string, string>;
 }
