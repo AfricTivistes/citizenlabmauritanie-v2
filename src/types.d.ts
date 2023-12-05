@@ -13,8 +13,10 @@ export interface Post {
 
   /**  */
   publishDate: Date;
+  date: string;
   /**  */
   updateDate?: Date;
+  description?: string;
 
   /**  */
   title: string;
@@ -22,6 +24,7 @@ export interface Post {
   excerpt?: string;
   /**  */
   image?: string;
+  featuredImage?: unknown;
 
   /**  */
   category?: string;
@@ -32,6 +35,7 @@ export interface Post {
 
   /**  */
   metadata?: MetaData;
+  terms?: unknown;
 
   /**  */
   draft?: boolean;
@@ -86,6 +90,7 @@ export interface MetaDataTwitter {
 export interface Image {
   src: string;
   alt?: string;
+  href?: string;
 }
 
 export interface Video {

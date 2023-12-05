@@ -1,0 +1,60 @@
+---
+const { node } = Astro.props;
+import { findImage } from '~/utils/images';
+import Image from '~/components/common/Image.astro';
+
+
+
+const image = await findImage(node.featuredImage?.node?.sourceUrl);
+--- 
+<section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+<h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{node.title}</h1>
+<div
+      class="mx-auto prose prose-lg max-w-4xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-green-600 dark:prose-a:text-green-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
+    >
+<!-- Display categories links if node has terms -->
+ { node.categories ?
+    node.categories.nodes.map(category => (<a class='term-link' href={category.uri}>{category.name}</a>)) :     
+    null 
+ }
+<!-- Only show date if node is a Post -->
+ {
+    node.__typename === 'Post' ? 
+    (<p class='post-details'>
+        Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
+    </p>):
+    null
+ }
+ <img class='featured-image' src={node.featuredImage?.node?.mediaItemUrl} alt="">
+       {
+        image ? (
+          <Image
+            src={image}
+            class="max-w-full lg:max-w-6xl mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
+            widths={[400, 900]}
+            sizes="(max-width: 900px) 400px, 900px"
+            alt={node.description || ''}
+            aspectRatio="16:9"
+            loading="eager"
+            width={830}
+            height={506}
+            loading="eager"
+            decoding="async"
+          />
+        ) : (
+          <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="border-t dark:border-slate-700" />
+          </div>
+        )
+      }
+ 
+ <article set:html={node.content}>
+ </article>
+</div>
+</section>
+ <style is:global>
+    .wp-block-image img {
+            width: 100%;
+            height: auto;  
+    }
+</style>

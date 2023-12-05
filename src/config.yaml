@@ -1,6 +1,6 @@
 site:
-  name: Africtivistes Citizen Lab Mauritanie
-  site: 'https://citizenlabmauritanie-v2.netlify.app'
+  name: AfricTivistes CitizenLab Mauritanie
+  site: 'https://citizenlabmauritanie.org'
   base: '/'
   trailingSlash: false
 
@@ -28,13 +28,13 @@ metadata:
     cardType: summary_large_image
 
 i18n:
-  language: en
+  language: fr
   textDirection: ltr
 
 apps:
   blog:
     isEnabled: true
-    postsPerPage: 6
+    postsPerPage: 10
 
     post:
       isEnabled: true
@@ -63,7 +63,7 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: G-NG19Q65D5Z # or "G-XXXXXXXXXX"
+      id: null # or "G-XXXXXXXXXX"
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

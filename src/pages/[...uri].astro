@@ -1,0 +1,69 @@
+---
+export const prerender = true;
+import { APP_BLOG } from '~/utils/config';
+import Layout from '~/layouts/PageLayout.astro';
+import { getNodeByURI, getAllUris } from "../utils/api";
+import Single from "../components/templates/Single.astro";
+import Post from "../components/templates/Post.astro";
+import { getCanonical, getPermalink } from "~/utils/permalinks";
+import { findImage } from "~/utils/images";
+
+
+const uri = `/${Astro.params.uri}/`;
+const data = await getNodeByURI(uri);
+const node = data.nodeByUri;
+export async function getStaticPaths() {
+    return await getAllUris();
+}
+function resolveOgType(node) {
+    let type;
+    switch (node.__typename) {
+        case "Post":
+            type = "article";
+            break;
+        case "Page":
+            type = "page";
+            break;
+        default:
+            type = Single;
+    }
+    return type;
+}
+const url = getCanonical(getPermalink(node.permalink, "post"));
+const metadata = {
+    title: node.title,
+    description: node.description,
+    canonical: node.canonical || url,
+    image: await findImage(node.featuredImage?.node?.mediaItemUrl),
+    noindex: APP_BLOG?.post?.robots.index,
+    ogType: resolveOgType(node),
+};
+
+
+
+function resolveContentTemplate(node) {
+    let template;
+    switch (node.__typename) {
+        case "Post":
+            template = Post;
+            break;
+        case "Page":
+            template = Single;
+            break;
+        case "Category":
+            template = Single;
+            break;
+        case "Tag":
+            template = Single;
+            break;
+        default:
+            template = Single;
+    }
+    return template;
+}
+const Template = resolveContentTemplate(node);
+---
+
+<Layout metadata={metadata}>
+    <Template node={node} image={metadata.image}></Template>
+</Layout>

@@ -1,19 +1,18 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
+import { t, changeLanguage } from "i18next";
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+
+changeLanguage("fr");
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Africtivistes CitizenLab Mauritanie 🇲🇷 — Votre plateforme d’informations citoyennes',
   ignoreTitleTemplate: true,
 };
 ---
@@ -23,227 +22,100 @@ const metadata = {
 
   <Hero
     actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
+      { text: t('site.more'),
+        href: '#features',
+        variant: 'primary' },
     ]}
-    image={{ src: '~/assets/images/hero.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 3.0</span> + Tailwind CSS
+      Votre plateforme d’informations
+      <span class="text-accent dark:text-accent highlight"> citoyennes</span>
+      en <span class="text-primary dark:text-primary highlight" >Mauritanie </span> 
     </Fragment>
-
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 3.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-       Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages
-      & Blogs.
+      Promouvoir la participation citoyenne et la démocratie participative en impulsant de nouvelles dynamiques par l’utilisation de la technologie citoyenne (civic tech)
     </Fragment>
   </Hero>
+  
+  <!-- HighlightedPosts Widget ******* -->
 
-  <!-- Note Widget ******************* -->
-
-  <Note />
+  <BlogLatestPosts
+    title="Découvrez les dernières actualités!"
+    information={`Vitrine de l'actualité et des activités autour de la participation citoyenne en Mauritanie.
+                `}
+  />
 
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022."
+    tagline="AfricTivistes"
+    title="CitizenLab Bénin"
+    subtitle="Ensemble pour une démocratie participative"
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Promouvoir la démocratie participative',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Ready-to-use Components',
-        description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
+          "Nous favorisons la mise en place d’outils innovants, produisons des contenus de valeur et des curriculum de formation pour promouvoir l’engagement citoyen au Bénin.",
         icon: 'tabler:components',
       },
       {
-        title: 'Best Practices',
+        title: 'Promouvoir la participation citoyenne',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+          "Nous oeuvrons pour plus d’implication citoyenne dans les organes de prise de décision publiques et dans l’élaboration des politiques publiques en conformité avec la charte africaine de la jeunesse et d’autres textes régionaux et continentaux. ",
+        icon: 'tabler:components',
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'Créer un réseau citoyen',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
+          "Nous sommes des acteurs de changement, convaincus de la nécessité d’unir nos forces pour insuffler une nouvelle conscience citoyenne au Bénin par la création de solutions concrètes afin de favoriser l'implication des jeunes et améliorer l’interaction entre les citoyens et les institutions publiques.",
+        icon: 'tabler:link',
+      },
+      {
+        title: 'Déployer une campagne de plaidoyer en ligne',
+        description:
+          "Pour avoir un Bénin fort, démocratique et enfin bien gouverné, nous organisons, pilotons et déployons des campagnes de plaidoyer en ligne pour promouvoir la participation citoyenne par la formation et la production de contenus de valeur.",
         icon: 'tabler:rocket',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Déployer des sessions de formation',
         description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
+          "Pour impulser une nouvelle dynamique de participation citoyenne au Bénin, Nous envisageons de dérouler des curriculum de formation à l’endroit de notre cible dans l’ensemble du territoire béninois pour disséminer les valeurs de l’engagement citoyen.",
+        icon: 'tabler:transform',
       },
       {
-        title: 'Open to new ideas and contributions',
+        title: 'Fournir une base de données',
         description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
+          "Durant tout le projet, nous allons produire des contenus de valeur sur nos différentes thématiques : l’accès à l’information, l’éducation a la participation citoyenne et le plaidoyer pour le renforcement des institutions au Bénin.",
+        icon: 'tabler:database',
       },
     ]}
   />
 
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro 3.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-       Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+    title="Africtivistes CitizenLab Bénin en trois étapes"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Octobre - Novembre 2023: <span class="font-medium">Appel à candidatures</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          "Appel a candidatures ouvert à tous les jeunes béninois pour recruter l'équipe projet de CitizenLab Mauritanie.",
+        icon: 'tabler:progress-check',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</em>',
+        title: 'Novembre 2023: <span class="font-medium">Formation des formateurs</em>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          "Les sessions ont porté sur les dynamiques de la participation citoyenne; la stratégie de plaidoyer digitale et sur l'identification des engagements contenus dans le Menu des engagements de la Cohorte Jeunesse",
+        icon: 'tabler:progress-check',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
+        title: '24 Novembre 2023: <span class="font-medium">Lancement officiel du projet</em>',
         icon: 'tabler:check',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      src: '~/assets/images/formation1.jpg',
       alt: 'Steps image',
     }}
   />
@@ -251,114 +123,106 @@ const metadata = {
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
+    title="Démocratie, Etat de Droit et Citoyenneté"
+    subtitle="Agissons pour un changement positif au Bénin avec AfricTivistes CitizenLab"
+    tagline=""
     items={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
+        title: 'Droits et libertés',
+        description: "Les droits et libertés sont des éléments clés de la citoyenneté, et incluent le droit à la vie, la liberté de pensée, d'expression, de religion, et l'égalité devant la loi.",
         icon: 'flat-color-icons:template',
       },
       {
-        title: 'Heros',
+        title: 'Participation politique',
         description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
+          "La participation politique est un aspect important de la citoyenneté, et comprend le droit de vote, le droit de se présenter aux élections, le droit de pétition et le droit de manifester",
         icon: 'flat-color-icons:gallery',
       },
       {
-        title: 'Features',
+        title: 'Engagement civique',
         description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
+          "L'engagement civique inclut les actions entreprises pour améliorer la communauté, telles que le bénévolat, le service communautaire, la participation à des groupes de quartier et la prise de responsabilité pour améliorer la qualité de vie dans son environnement",
+        icon: 'flat-color-icons:todo-list',
       },
       {
-        title: 'Content',
+        title: 'Éducation civique',
         description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
+          "L'éducation civique est une composante essentielle de la citoyenneté, qui vise à donner aux citoyens les connaissances, les compétences et les valeurs nécessaires pour participer efficacement à la vie politique et civique",
         icon: 'flat-color-icons:document',
       },
       {
-        title: 'Call-to-Action',
+        title: 'Responsabilité',
         description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
+          "Les citoyens ont des responsabilités envers leur communauté, notamment respecter les lois, voter, payer des impôts, respecter les droits des autres, être tolérants, protéger l'environnement et participer à la vie communautaire",
         icon: 'flat-color-icons:advertising',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
+        title: 'Diversité',
+        description: "La diversité est une réalité de la plupart des sociétés, et la citoyenneté implique de respecter les différences culturelles, religieuses et ethniques des autres, ainsi que de promouvoir l'inclusion et l'égalité",
         icon: 'flat-color-icons:currency-exchange',
       },
       {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
+        title: 'Dialogue et délibération',
+        description: "Le dialogue et la délibération sont des éléments clés de la citoyenneté, car ils permettent aux citoyens de discuter de questions importantes, de partager des opinions et de trouver des solutions ensemble",
         icon: 'flat-color-icons:voice-presentation',
       },
       {
-        title: 'Contact',
+        title: 'Responsabilisation',
         description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+          "La responsabilisation est un élément important de la citoyenneté, car elle implique que les gouvernements et les dirigeants soient responsables de leurs actions, rendent des comptes à la population et respectent les droits des citoyens",
         icon: 'flat-color-icons:business-contact',
       },
       {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
+        title: 'Participation à la vie économique',
+        description: "La participation à la vie économique est un élément important de la citoyenneté, car elle implique la participation à l'économie, la compréhension de son fonctionnement et de ses impacts, ainsi que la promotion de l'équité économique",
         icon: 'flat-color-icons:database',
       },
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-green-50 dark:bg-slate-800"></div>
     </Fragment>
   </Features2>
 
-  <!-- HighlightedPosts Widget ******* -->
 
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
 
   <!-- FAQs Widget ******************* -->
 
   <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    title="Foire aux questions"
+    subtitle="Le FAQ sur le projet AfricTivistes CitizenLab Bénin répond à des questions sur les objectifs, les activités, le public cible, le rôle des citoyens et le financement du projet"
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: "Qu'est-ce que le projet AfricTivistes CitizenLab Bénin ?",
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          "AfricTivistes CitizenLab Mauritanie est une fabrique citoyenne qui a pour objectif <b>d’appuyer, d’accompagner et d’outiller</b> les acteurs de la société civile du Bénin par la formation, le développement d’outils innovants. ",
       },
       {
-        title: 'What do I need to start?',
+        title: "Qu'est-ce que la Civic Tech ?",
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          "La Civic Tech est un terme qui désigne les technologies et les démarches qui favorisent et renforcent le rôle joué par les citoyens dans la consolidation des débats publics. Ils sont souvent utilisées par les jeunes pour s'engager politiquement et participer à la vie de leur pays",
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: "Pourquoi AfricTivistes CitizenLab Mauritanie encourage la participation citoyenne au Bénin ?",
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          "AfricTivistes CitizenLab est une initiative de Promotion de la Participation Citoyenne  et de  de l’engagement civique et politique des jeunes du Bénin est une réponse à une demande des jeunes et des organisations de la société civile.",
       },
       {
-        title: "What's something that you don't understand?",
+        title: "Comment les Civic Tech ont-elles permis des mobilisations importantes en Afrique ?",
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          "Les Civic Tech ont permis des mobilisations importantes en Afrique en donnant une voix aux citoyens et en permettant des échanges d'informations en temps réel. Elles ont notamment été utilisées lors des campagnes électorales et pour organiser des manifestations et des protestations",
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: "Comment AfricTivistes CitizenLab Mauritanie encourage la participation citoyenne au Bénin ?",
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          "Le projet compte passer par la production de contenus, le plaidoyer et la formation pour encourager la participation citoyenne au Bénin.",
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: "Comment les Civic Tech ont-elles permis des mobilisations importantes en Afrique ?",
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          "Les Civic Tech ont permis des mobilisations importantes en Afrique en donnant une voix aux citoyens et en permettant des échanges d'informations en temps réel. Elles ont notamment été utilisées lors des campagnes électorales et pour organiser des manifestations et des protestations",
       },
     ]}
   />
@@ -367,33 +231,15 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
+      { title: 'Formations', amount: '3' },
+      { title: 'Jeunes outillés', amount: '100' },
+      { title: 'Jeunes engagés', amount: '15' },
+      { title: "Internautes", amount: '4M' },
     ]}
   />
 
-  <!-- CallToAction Widget *********** -->
 
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
 
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
-    </Fragment>
-  </CallToAction>
+
+  
 </Layout>

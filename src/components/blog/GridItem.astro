@@ -13,7 +13,7 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const image = (await findImage(post.image));
+const image = await findImage(post.featuredImage?.node?.mediaItemUrl);
 ---
 
 <article class="mb-6 transition">
@@ -51,5 +51,5 @@ const image = (await findImage(post.image));
       )
     }
   </h3>
-  <p class="text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>
+  <p class="text-muted dark:text-slate-400 text-lg" set:html={post.excerpt}></p>
 </article>

@@ -1,0 +1,72 @@
+---
+
+import type { TeamMember } from '~/types';
+import Image from '~/components/common/Image.astro';
+import { findImage } from '~/utils/images';
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  member: TeamMember;
+}
+
+const { member } = Astro.props;
+const image = await findImage(member.featuredImage?.node?.mediaItemUrl);
+---
+
+<div class="bg-white dark:bg-slate-900 rounded-lg mt-2 shadow-lg overflow-hidden">
+  <div class="sm:flex-shrink-0 object-contain sm:h-80 w-full">
+    {image && (
+      <Image
+        src={image}
+        class="w-full h-full md:rounded md:shadow-lg bg-gray-400 dark:bg-slate-700"
+        widths={[400, 900]}
+        width={400}
+        sizes="(max-width: 900px) 400px, 900px"
+        alt="dsdf"
+        aspectRatio="16:9"
+        layout="cover"
+        loading="lazy"
+        decoding="async"
+      />
+    )}
+  </div>
+  <div class="px-4 py-4 text-center">
+    <h2 class="font-bold text-lg">{member.title}</h2>
+
+    <div class="flex justify-center mt-2">
+      {member.social.facebook && (
+              <a href={member.social.facebook} target="_blank" rel="noopener noreferrer">
+                <Icon
+                      name="tabler:brand-facebook"
+                      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
+                />
+              </a>
+            )}
+            {member.social.instagram && (
+              <a href={member.social.instagram} target="_blank" rel="noopener noreferrer">
+                <Icon
+                      name="tabler:brand-instagram"
+                      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
+                />
+              </a>
+            )}
+            {member.social.linkedin && (
+              <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                <Icon
+                      name="tabler:brand-linkedin"
+                      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
+                />
+              </a>
+            )}
+            {member.social.twitter && (
+              <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                <Icon
+                      
+                      name="tabler:brand-x"
+                      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
+                />
+              </a>
+            )}
+    </div>
+  </div>
+</div>
