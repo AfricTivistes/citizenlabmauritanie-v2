@@ -58,12 +58,12 @@
   },
   "heroObjectifs": {
     "highlight": "AfricTivistes",
-    "title": "Citizen Lab Mauritanie",
+    "title": "CitizenLab Mauritanie",
     "subtitle": "معا من أجل ديمقراطية تشاركية",
     "items": {
       "title1": "تعزيز الديمقراطية التشاركية",
       "description1": "في موريتانيا ، من خلال تشجيع مشاركة المواطنين وتعزيز البناء المشترك.",
-      "title2": "Créer un réseau citoyen",
+      "title2": "إنشاء شبكة المواطنين",
       "description2": "فاعلو التغيير في موريتانيا من خلال إنشاء مؤسسة فكرية للمواطنين.",
       "title3": "وفر منصة",
       "description3": "محتوى لأعضاء مؤسسة الفكر والرأي لتبادل المعلومات وإثارة النقاش حول القضايا ذات الصلة المتعلقة بالديمقراطية التشاركية.",
@@ -76,7 +76,7 @@
     }
   },
   "projectStep": {
-    "title": "Africantivists Citizen Lab موريتانيا في ثلاث خطوات",
+    "title": "AfricTivistes Citizen Lab موريتانيا في ثلاث خطوات",
     "items": {
       "date1": "ديسمبر 2022: <span class='font-medium'>دعوة لتقديم الطلبات</span>",
       "step1": "دعوة لتقديم الطلبات مفتوحة لجميع الموريتانيين لتوظيف فريق مشروع CitizenLab موريتانيا",

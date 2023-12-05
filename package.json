@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "npx astro-i18next generate",
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "npx astro-i18next generate && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

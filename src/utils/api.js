@@ -58,6 +58,9 @@ export async function getNodeByURI(uri) {
                           permalink:uri
                         }
                       }
+                       language {
+                      slug
+                    }
                       featuredImage {
                         node {
                           srcSet
@@ -87,6 +90,9 @@ export async function getNodeByURI(uri) {
                           }
                         }
                       }
+                       language {
+                      slug
+                    }
                     }
                     ... on Category {
                       id
@@ -103,6 +109,9 @@ export async function getNodeByURI(uri) {
                               permalink: uri
                             }
                           }
+                           language {
+                      slug
+                    }
                           featuredImage {
                             node {
                               srcSet
@@ -166,13 +175,13 @@ export async function getAllUris() {
     return uris;
 }
 
-export async function findLatestPostsAPI() {
+export async function findLatestPostsAPI(lang) {
   const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: `{
-                  posts(first: 8) {
+                  posts(first: 8, where: {language: ${lang}}) {
                     nodes {
                       date
                       permalink: uri
@@ -206,13 +215,13 @@ export async function findLatestPostsAPI() {
   const { data } = await response.json();
   return data.posts.nodes;
 }
-export async function newsPagePostsQuery() {
+export async function newsPagePostsQuery(lang) {
   const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query: `{
-                  posts(first:1000) {
+                  posts(first:1000, where: {language: ${lang}}) {
                     nodes {
                       date
                       permalink: uri

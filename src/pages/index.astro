@@ -1,19 +1,19 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from "~/layouts/PageLayout.astro";
 import { t, changeLanguage } from "i18next";
-import Hero from '~/components/widgets/Hero.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
+import Hero from "~/components/widgets/Hero.astro";
+import Features from "~/components/widgets/Features.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Steps from "~/components/widgets/Steps.astro";
+import BlogLatestPosts from "~/components/widgets/BlogLatestPosts.astro";
+import FAQs from "~/components/widgets/FAQs.astro";
+import Stats from "~/components/widgets/Stats.astro";
 
 changeLanguage("fr");
 
 const metadata = {
-  title: 'Africtivistes CitizenLab Mauritanie 🇲🇷 — Votre plateforme d’informations citoyennes',
-  ignoreTitleTemplate: true,
+    title: "Africtivistes CitizenLab Mauritanie \uD83C\uDDF2\uD83C\uDDF7 \u2014 Votre plateforme d\u2019informations citoyennes",
+    ignoreTitleTemplate: true,
 };
 ---
 
@@ -28,89 +28,84 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      Votre plateforme d’informations
-      <span class="text-accent dark:text-accent highlight"> citoyennes</span>
-      en <span class="text-primary dark:text-primary highlight" >Mauritanie </span> 
+      {t('site.slogan')}
+      <span class="text-accent dark:text-accent highlight"> {t('site.slogan1')}</span>
+      {t('site.slogan2')} <span class="text-primary dark:text-primary highlight" >{t('site.slogan3')} </span> 
     </Fragment>
     <Fragment slot="subtitle">
-      Promouvoir la participation citoyenne et la démocratie participative en impulsant de nouvelles dynamiques par l’utilisation de la technologie citoyenne (civic tech)
+      {t('site.info-projet')}
     </Fragment>
   </Hero>
   
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogLatestPosts
-    title="Découvrez les dernières actualités!"
-    information={`Vitrine de l'actualité et des activités autour de la participation citoyenne en Mauritanie.
-                `}
+    title={t('actualites.name')}
+    information={t('actualites.description')}
   />
 
   <!-- Features Widget *************** -->
 
   <Features
     id="features"
-    tagline="AfricTivistes"
-    title="CitizenLab Bénin"
-    subtitle="Ensemble pour une démocratie participative"
+    tagline={t('heroObjectifs.highlight')}
+    title={t('heroObjectifs.title')}
+    subtitle={t('heroObjectifs.subtitle')}
     items={[
       {
-        title: 'Promouvoir la démocratie participative',
-        description:
-          "Nous favorisons la mise en place d’outils innovants, produisons des contenus de valeur et des curriculum de formation pour promouvoir l’engagement citoyen au Bénin.",
+        title: t('heroObjectifs.items.title1'),
+        description:t('heroObjectifs.items.description1'),
         icon: 'tabler:components',
       },
       {
-        title: 'Promouvoir la participation citoyenne',
-        description:
-          "Nous oeuvrons pour plus d’implication citoyenne dans les organes de prise de décision publiques et dans l’élaboration des politiques publiques en conformité avec la charte africaine de la jeunesse et d’autres textes régionaux et continentaux. ",
+        title: t('heroObjectifs.items.title2'),
+        description:t('heroObjectifs.items.description2'),
         icon: 'tabler:components',
       },
       {
-        title: 'Créer un réseau citoyen',
-        description:
-          "Nous sommes des acteurs de changement, convaincus de la nécessité d’unir nos forces pour insuffler une nouvelle conscience citoyenne au Bénin par la création de solutions concrètes afin de favoriser l'implication des jeunes et améliorer l’interaction entre les citoyens et les institutions publiques.",
+        title: t('heroObjectifs.items.title3'),
+        description:t('heroObjectifs.items.description3'),
         icon: 'tabler:link',
       },
       {
-        title: 'Déployer une campagne de plaidoyer en ligne',
-        description:
-          "Pour avoir un Bénin fort, démocratique et enfin bien gouverné, nous organisons, pilotons et déployons des campagnes de plaidoyer en ligne pour promouvoir la participation citoyenne par la formation et la production de contenus de valeur.",
+        title: t('heroObjectifs.items.title4'),
+        description:t('heroObjectifs.items.description4'),
         icon: 'tabler:rocket',
       },
       {
-        title: 'Déployer des sessions de formation',
-        description:
-          "Pour impulser une nouvelle dynamique de participation citoyenne au Bénin, Nous envisageons de dérouler des curriculum de formation à l’endroit de notre cible dans l’ensemble du territoire béninois pour disséminer les valeurs de l’engagement citoyen.",
-        icon: 'tabler:transform',
+        title: t('heroObjectifs.items.title5'),
+        description:t('heroObjectifs.items.description5'),
+        icon: 'tabler:database',
       },
       {
-        title: 'Fournir une base de données',
-        description:
-          "Durant tout le projet, nous allons produire des contenus de valeur sur nos différentes thématiques : l’accès à l’information, l’éducation a la participation citoyenne et le plaidoyer pour le renforcement des institutions au Bénin.",
-        icon: 'tabler:database',
+        title: t('heroObjectifs.items.title6'),
+        description:t('heroObjectifs.items.description6'),
+        icon: 'tabler:transform',
       },
     ]}
   />
 
   <!-- Steps Widget ****************** -->
-
   <Steps
-    title="Africtivistes CitizenLab Bénin en trois étapes"
+    title={t('projectStep.title')}
     items={[
       {
-        title: 'Octobre - Novembre 2023: <span class="font-medium">Appel à candidatures</span>',
-        description:
-          "Appel a candidatures ouvert à tous les jeunes béninois pour recruter l'équipe projet de CitizenLab Mauritanie.",
-        icon: 'tabler:progress-check',
+        title: t('projectStep.items.date1'),
+        description: t('projectStep.items.step1'),
+        icon: 'tabler:package',
       },
       {
-        title: 'Novembre 2023: <span class="font-medium">Formation des formateurs</em>',
-        description:
-          "Les sessions ont porté sur les dynamiques de la participation citoyenne; la stratégie de plaidoyer digitale et sur l'identification des engagements contenus dans le Menu des engagements de la Cohorte Jeunesse",
-        icon: 'tabler:progress-check',
+        title: t('projectStep.items.date2'),
+        description: t('projectStep.items.step2'),
+        icon: 'tabler:letter-case',
       },
       {
-        title: '24 Novembre 2023: <span class="font-medium">Lancement officiel du projet</em>',
+        title: t('projectStep.items.date3'),
+        description: t('projectStep.items.step3'),
+        icon: 'tabler:paint',
+      },
+      {
+        title: t('projectStep.items.date4'),
         icon: 'tabler:check',
       },
     ]}
@@ -122,108 +117,93 @@ const metadata = {
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
-    title="Démocratie, Etat de Droit et Citoyenneté"
-    subtitle="Agissons pour un changement positif au Bénin avec AfricTivistes CitizenLab"
-    tagline=""
+ <Features2
+    title={t('citoyennete.title')}
+    subtitle={t('citoyennete.description')}
+    highlight={t('citoyennete.highlight')}
     items={[
       {
-        title: 'Droits et libertés',
-        description: "Les droits et libertés sont des éléments clés de la citoyenneté, et incluent le droit à la vie, la liberté de pensée, d'expression, de religion, et l'égalité devant la loi.",
+        title: t('citoyennete.items.title1'),
+        description: t('citoyennete.items.description1'),
         icon: 'flat-color-icons:template',
       },
       {
-        title: 'Participation politique',
-        description:
-          "La participation politique est un aspect important de la citoyenneté, et comprend le droit de vote, le droit de se présenter aux élections, le droit de pétition et le droit de manifester",
+        title: t('citoyennete.items.title2'),
+        description: t('citoyennete.items.description2'),
         icon: 'flat-color-icons:gallery',
       },
       {
-        title: 'Engagement civique',
-        description:
-          "L'engagement civique inclut les actions entreprises pour améliorer la communauté, telles que le bénévolat, le service communautaire, la participation à des groupes de quartier et la prise de responsabilité pour améliorer la qualité de vie dans son environnement",
+        title: t('citoyennete.items.title3'),
+        description: t('citoyennete.items.description3'),
         icon: 'flat-color-icons:todo-list',
       },
       {
-        title: 'Éducation civique',
-        description:
-          "L'éducation civique est une composante essentielle de la citoyenneté, qui vise à donner aux citoyens les connaissances, les compétences et les valeurs nécessaires pour participer efficacement à la vie politique et civique",
+        title: t('citoyennete.items.title4'),
+        description: t('citoyennete.items.description4'),
         icon: 'flat-color-icons:document',
       },
       {
-        title: 'Responsabilité',
-        description:
-          "Les citoyens ont des responsabilités envers leur communauté, notamment respecter les lois, voter, payer des impôts, respecter les droits des autres, être tolérants, protéger l'environnement et participer à la vie communautaire",
+        title: t('citoyennete.items.title5'),
+        description: t('citoyennete.items.description5'),
         icon: 'flat-color-icons:advertising',
       },
       {
-        title: 'Diversité',
-        description: "La diversité est une réalité de la plupart des sociétés, et la citoyenneté implique de respecter les différences culturelles, religieuses et ethniques des autres, ainsi que de promouvoir l'inclusion et l'égalité",
+        title: t('citoyennete.items.title6'),
+        description: t('citoyennete.items.description6'),
         icon: 'flat-color-icons:currency-exchange',
       },
       {
-        title: 'Dialogue et délibération',
-        description: "Le dialogue et la délibération sont des éléments clés de la citoyenneté, car ils permettent aux citoyens de discuter de questions importantes, de partager des opinions et de trouver des solutions ensemble",
+        title: t('citoyennete.items.title7'),
+        description: t('citoyennete.items.description7'),
         icon: 'flat-color-icons:voice-presentation',
       },
       {
-        title: 'Responsabilisation',
-        description:
-          "La responsabilisation est un élément important de la citoyenneté, car elle implique que les gouvernements et les dirigeants soient responsables de leurs actions, rendent des comptes à la population et respectent les droits des citoyens",
+        title: t('citoyennete.items.title8'),
+        description: t('citoyennete.items.description8'),
         icon: 'flat-color-icons:business-contact',
       },
       {
-        title: 'Participation à la vie économique',
-        description: "La participation à la vie économique est un élément important de la citoyenneté, car elle implique la participation à l'économie, la compréhension de son fonctionnement et de ses impacts, ainsi que la promotion de l'équité économique",
-        icon: 'flat-color-icons:database',
+        title: t('citoyennete.items.title9'),
+        description: t('citoyennete.items.description9'),
+        icon: 'flat-color-icons:business-contact',
       },
     ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-green-50 dark:bg-slate-800"></div>
-    </Fragment>
-  </Features2>
+  />
+
 
 
 
   <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    title="Foire aux questions"
-    subtitle="Le FAQ sur le projet AfricTivistes CitizenLab Bénin répond à des questions sur les objectifs, les activités, le public cible, le rôle des citoyens et le financement du projet"
+<FAQs
+    title={t('faq.name')}
+    subtitle={t('faq.description')}
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
-      {
-        title: "Qu'est-ce que le projet AfricTivistes CitizenLab Bénin ?",
-        description:
-          "AfricTivistes CitizenLab Mauritanie est une fabrique citoyenne qui a pour objectif <b>d’appuyer, d’accompagner et d’outiller</b> les acteurs de la société civile du Bénin par la formation, le développement d’outils innovants. ",
-      },
-      {
-        title: "Qu'est-ce que la Civic Tech ?",
-        description:
-          "La Civic Tech est un terme qui désigne les technologies et les démarches qui favorisent et renforcent le rôle joué par les citoyens dans la consolidation des débats publics. Ils sont souvent utilisées par les jeunes pour s'engager politiquement et participer à la vie de leur pays",
-      },
-      {
-        title: "Pourquoi AfricTivistes CitizenLab Mauritanie encourage la participation citoyenne au Bénin ?",
-        description:
-          "AfricTivistes CitizenLab est une initiative de Promotion de la Participation Citoyenne  et de  de l’engagement civique et politique des jeunes du Bénin est une réponse à une demande des jeunes et des organisations de la société civile.",
-      },
-      {
-        title: "Comment les Civic Tech ont-elles permis des mobilisations importantes en Afrique ?",
-        description:
-          "Les Civic Tech ont permis des mobilisations importantes en Afrique en donnant une voix aux citoyens et en permettant des échanges d'informations en temps réel. Elles ont notamment été utilisées lors des campagnes électorales et pour organiser des manifestations et des protestations",
-      },
-      {
-        title: "Comment AfricTivistes CitizenLab Mauritanie encourage la participation citoyenne au Bénin ?",
-        description:
-          "Le projet compte passer par la production de contenus, le plaidoyer et la formation pour encourager la participation citoyenne au Bénin.",
-      },
-      {
-        title: "Comment les Civic Tech ont-elles permis des mobilisations importantes en Afrique ?",
-        description:
-          "Les Civic Tech ont permis des mobilisations importantes en Afrique en donnant une voix aux citoyens et en permettant des échanges d'informations en temps réel. Elles ont notamment été utilisées lors des campagnes électorales et pour organiser des manifestations et des protestations",
-      },
+        {
+          title: t('faq.q1'),
+          description: t('faq.r1'),
+        },
+        {
+          title: t('faq.q2'),
+          description: t('faq.r2'),
+        },
+        {
+          title: t('faq.q3'),
+          description: t('faq.r3'),
+        },      
+        {
+          title: t('faq.q4'),
+          description: t('faq.r4'),
+        },
+        {
+          title: t('faq.q5'),
+          description: t('faq.r5'),
+        },
+        {
+          title: t('faq.q5'),
+          description: t('faq.r5'),
+        },
     ]}
   />
 
@@ -231,13 +211,12 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Formations', amount: '3' },
-      { title: 'Jeunes outillés', amount: '100' },
-      { title: 'Jeunes engagés', amount: '15' },
-      { title: "Internautes", amount: '4M' },
+      { title: t('stats.application'), amount: '1' },
+      { title: t('stats.langues'), amount: '4' },
+      { title: t('stats.jeunes'), amount: '17' },
+      { title: t('stats.internautes'), amount: '1,73M' },
     ]}
   />
-
 
 
 

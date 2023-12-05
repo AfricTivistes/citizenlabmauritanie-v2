@@ -2,7 +2,7 @@
   "site": {
     "langue": "FR",
     "menu-top": "GATSBY_HEADER_MENU",
-    "title": "Africtivistes Citizen Lab Mauritanie — Votre plateforme d’information citoyenne",
+    "title": "Africtivistes CitizenLab Mauritanie — Votre plateforme d’information citoyenne",
     "slogan": "Votre plateforme d’informations ",
     "slogan1": "citoyennes ",
     "slogan2": "en ",
@@ -58,7 +58,7 @@
   },
   "heroObjectifs": {
     "highlight": "AfricTivistes",
-    "title": "Citizen Lab Mauritanie",
+    "title": "CitizenLab Mauritanie",
     "subtitle": "Ensemble pour une démocratie participative",
     "items": {
       "title1": "Renforcer la démocratie participative",
@@ -76,7 +76,7 @@
     }
   },
   "projectStep": {
-    "title": "Africtivistes Citizen Lab Mauritanie en trois etapes",
+    "title": "Africtivistes CitizenLab Mauritanie en trois etapes",
     "items": {
       "date1": "Decembre 2022: <span class='font-medium'>Appel a candidatures</span>",
       "step1": "Appel à candidatures ouvert à tous les mauritaniens pour recruter l'équipe projet de CitizenLab Mauritanie",
@@ -115,7 +115,7 @@
   "actualites": {
     "name": "Découvrez les dernières actualités!",
     "allPost": "Voir tous les articles",
-    "description": "Cette section revient sur l’actualité du projet et sera une vitrine sur tout ce qui se fait en matière d’engagement et de participation citoyenne en Mauritanie."
+    "description": "Vitrine de l'actualité et des activités autour de la participation citoyenne en Mauritanie."
   },
   "stats": {
     "application": "Application mobile inclusif",

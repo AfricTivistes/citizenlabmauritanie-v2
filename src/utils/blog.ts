@@ -5,6 +5,7 @@ import { APP_BLOG } from '~/utils/config';
 import { cleanSlug, trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from './permalinks';
 import { newsPagePostsQuery, findLatestPostsAPI } from "~/utils/api";
 import slugify from 'slugify';
+import { t } from "i18next";
 
 const generatePermalink = async ({
   id,
@@ -158,7 +159,7 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 /** */
 export const findLatestPosts = async ({ count }: { count?: number }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await findLatestPostsAPI();
+  const posts = await findLatestPostsAPI(t('site.langue'));
 
   return posts ? posts.slice(0, _count) : [];
 };
