@@ -1,16 +1,17 @@
 ---
+import { changeLanguage } from "i18next";
 import Layout from "~/layouts/PageLayout.astro";
 import Stats from "~/components/widgets/Stats.astro";
 import Headline from "~/components/ui/Headline.astro";
 import { getAllMembers } from "~/utils/api";
 import Membres from "~/components/blog/Membres.astro";
 
+changeLanguage("fr");
 
 const metadata = {
-  title: 'Equipe',
+    title: "Equipe",
 };
 const members = await getAllMembers();
-
 ---
 
 

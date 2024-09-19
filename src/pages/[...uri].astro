@@ -1,13 +1,15 @@
 ---
+import { changeLanguage } from "i18next";
 export const prerender = true;
-import { APP_BLOG } from '~/utils/config';
-import Layout from '~/layouts/PageLayout.astro';
+import { APP_BLOG } from "~/utils/config";
+import Layout from "~/layouts/PageLayout.astro";
 import { getNodeByURI, getAllUris } from "../utils/api";
 import Single from "../components/templates/Single.astro";
 import Post from "../components/templates/Post.astro";
 import { getCanonical, getPermalink } from "~/utils/permalinks";
 import { findImage } from "~/utils/images";
 
+changeLanguage("fr");
 
 const uri = `/${Astro.params.uri}/`;
 const data = await getNodeByURI(uri);
@@ -38,9 +40,6 @@ const metadata = {
     noindex: APP_BLOG?.post?.robots.index,
     ogType: resolveOgType(node),
 };
-
-
-
 function resolveContentTemplate(node) {
     let template;
     switch (node.__typename) {

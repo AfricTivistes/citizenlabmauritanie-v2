@@ -167,7 +167,7 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
 /** */
 export const getStaticPathsBlogList = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await newsPagePostsQuery(), {
+  return paginate(await newsPagePostsQuery(t('site.langue')), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
   });
@@ -188,8 +188,9 @@ export const getStaticPathsBlogPost = async () => {
 export const getStaticPathsBlogCategory = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
-  const posts = await newsPagePostsQuery();
+  const posts = await newsPagePostsQuery(t('site.langue'));
   const categories = new Set();
+
 
   posts.forEach((post) => {
     if (post.categories && post.categories.nodes && post.categories.nodes.length > 0) {
@@ -227,7 +228,7 @@ export const getStaticPathsBlogCategory = async ({ paginate }) => {
 export const getStaticPathsBlogTag = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
-  const posts = await newsPagePostsQuery();
+  const posts = await newsPagePostsQuery(t('site.langue'));
   const tags = new Set();
 
   posts.forEach((post) => {

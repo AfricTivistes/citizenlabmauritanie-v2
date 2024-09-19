@@ -1,10 +1,13 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import { changeLanguage } from "i18next";
+import Layout from "~/layouts/PageLayout.astro";
+import ContactUs from "~/components/widgets/Contact.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+
+changeLanguage("fr");
 
 const metadata = {
-  title: 'Contact',
+    title: "Contact",
 };
 ---
 
