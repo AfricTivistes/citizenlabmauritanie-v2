@@ -1,0 +1,14 @@
+---
+import Membre from './MembresGrid.astro';
+import type { Team } from '~/types';
+
+export interface Props {
+  team: Array<Team>;
+}
+
+const { team } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ml-20 mr-20">
+  {team.map((membre) => <Membre member={membre} />)}
+</div>

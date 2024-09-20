@@ -3,6 +3,9 @@ import type { CollectionEntry } from 'astro:content';
 import type { Post } from '~/types';
 import { APP_BLOG } from '~/utils/config';
 import { cleanSlug, trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from './permalinks';
+import { newsPagePostsQuery, findLatestPostsAPI } from "~/utils/api";
+import slugify from 'slugify';
+import { t } from "i18next";
 
 const generatePermalink = async ({
   id,
@@ -156,7 +159,7 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 /** */
 export const findLatestPosts = async ({ count }: { count?: number }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await fetchPosts();
+  const posts = await findLatestPostsAPI(t('site.langue'));
 
   return posts ? posts.slice(0, _count) : [];
 };
@@ -164,7 +167,7 @@ export const findLatestPosts = async ({ count }: { count?: number }): Promise<Ar
 /** */
 export const getStaticPathsBlogList = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await fetchPosts(), {
+  return paginate(await newsPagePostsQuery(t('site.langue')), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
   });
@@ -185,15 +188,31 @@ export const getStaticPathsBlogPost = async () => {
 export const getStaticPathsBlogCategory = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
-  const posts = await fetchPosts();
+  const posts = await newsPagePostsQuery(t('site.langue'));
   const categories = new Set();
-  posts.map((post) => {
-    typeof post.category === 'string' && categories.add(post.category.toLowerCase());
+
+
+  posts.forEach((post) => {
+    if (post.categories && post.categories.nodes && post.categories.nodes.length > 0) {
+      post.categories.nodes.forEach((category) => {
+        if (category.name && typeof category.name === 'string') {
+          const normalizedCategory = slugify(category.name, { lower: true });
+          categories.add(normalizedCategory);
+        }
+      });
+    }
   });
 
-  return Array.from(categories).flatMap((category: string) =>
+
+  const paths = Array.from(categories).flatMap((category) =>
     paginate(
-      posts.filter((post) => typeof post.category === 'string' && category === post.category.toLowerCase()),
+      posts.filter((post) =>
+        post.categories &&
+        post.categories.nodes &&
+        post.categories.nodes.some((cat) =>
+          cat.name && typeof cat.name === 'string' && category === slugify(cat.name, { lower: true })
+        )
+      ),
       {
         params: { category: category, blog: CATEGORY_BASE || undefined },
         pageSize: blogPostsPerPage,
@@ -201,26 +220,44 @@ export const getStaticPathsBlogCategory = async ({ paginate }) => {
       }
     )
   );
+
+  return paths;
 };
 
 /** */
 export const getStaticPathsBlogTag = async ({ paginate }) => {
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
-  const posts = await fetchPosts();
+  const posts = await newsPagePostsQuery(t('site.langue'));
   const tags = new Set();
-  posts.map((post) => {
-    Array.isArray(post.tags) && post.tags.map((tag) => tags.add(tag.toLowerCase()));
+
+  posts.forEach((post) => {
+    if (post.terms && post.terms.nodes && post.terms.nodes.length > 0) {
+      post.terms.nodes.forEach((term) => {
+        if (term.name && typeof term.name === 'string') {
+          const normalizedTag = slugify(term.name, { lower: true });
+          tags.add(encodeURIComponent(normalizedTag));
+        }
+      });
+    }
   });
 
-  return Array.from(tags).flatMap((tag: string) =>
+  const paths = Array.from(tags).flatMap((tag) =>
     paginate(
-      posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.toLowerCase() === tag)),
+      posts.filter((post) =>
+        post.terms &&
+        post.terms.nodes &&
+        post.terms.nodes.some((term) =>
+          term.name && typeof term.name === 'string' && slugify(term.name, { lower: true }) === tag
+        )
+      ),
       {
         params: { tag: tag, blog: TAG_BASE || undefined },
         pageSize: blogPostsPerPage,
-        props: { tag },
+        props: { tag: tag },
       }
     )
   );
+
+  return paths;
 };

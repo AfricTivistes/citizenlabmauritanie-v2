@@ -10,19 +10,19 @@ import type { Widget } from "~/types";
 import Button from "../ui/Button.astro";
 
 export interface Props extends Widget {
-  title?: string;
+  title: string;
   linkText?: string;
   linkUrl?: string | URL;
-  information?: string;
+  information: string;
   count?: number;
 }
 
 const {
   title = await Astro.slots.render("title"),
-  linkText = "View all posts",
+  linkText = "Voir tous les articles",
   linkUrl = getBlogPermalink(),
   information = await Astro.slots.render("information"),
-  count = 4,
+  count = 8,
 
   id,
   isDark = false,

@@ -1,0 +1,45 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "~/layouts/PageLayout.astro";
+import Hero2 from "~/components/widgets/Hero2.astro";
+
+changeLanguage("fr");
+
+const metadata = {
+    title: "Guide de l'electeur mauritanien",
+};
+---
+
+<Layout {metadata}>
+  <Fragment slot="announcement"></Fragment>
+
+  <!-- Hero2 Widget ******************* -->
+
+  <Hero2
+    callToAction={{ text: 'Telecharger le guide', href: 'https://citizenlabmauritanie.africtivistes.org/wp-content/uploads/2023/05/Guide-de-lelecteur-mauritanien.pdf', icon: 'tabler:download' }}
+  >
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white highlight mb-5"> Le Guide de l'électeur mauritanien</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+  
+        <span class="block">
+        L’élection constitue un exercice démocratique où les citoyens sont appelés à élire dans la transparence les femmes et les hommes incarnant leur aspiration à une vie meilleure pour une durée déterminée par la loi.     
+        </span>
+        <span  class="block mb-6">
+          Une élection ainsi confère au citoyen le pouvoir d’exprimer son droit d’aspirer à un lendemain meilleur pour un développement local à travers son vote pour un programme, une vision, un changement et un développement durable.
+        </span>
+
+        <span class="block mb-6">
+        Ce guide réalisé par l'équipe de <a class="font-bold text-green-600">AfricTivistes CitizenLab Mauritanie</a> a pour objectif principal de rendre accessible les  informations pratiques sur le processus électoral de la composition des bureaux de vote en passant par la transmission des procès-verbaux jusqu’au contentieux.
+        </span>
+        <span class="block mb-6">
+          Il est également un outil d’information sur la participation citoyenne pour une meilleure démocratie participative.
+        </span>
+        <span>
+            Ce travail est rendu possible avec l’appui de <a target="_blank" href="https://africtivistes.org/" class="font-bold text-green-600">AfricTivistes</a>
+        </span>
+    </Fragment>
+  </Hero2>
+</Layout>

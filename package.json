@@ -4,8 +4,9 @@
   "version": "1.0.0-beta.6",
   "private": true,
   "scripts": {
+    "prebuild": "npx astro-i18next generate",
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "npx astro-i18next generate && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -19,9 +20,12 @@
     "@astrolib/seo": "^1.0.0-beta.4",
     "@fontsource-variable/inter": "^5.0.8",
     "astro": "^3.1.2",
+    "astro-i18next": "^1.0.0-beta.21",
     "astro-icon": "^1.0.0-next.2",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "slug": "^8.2.3",
+    "slugify": "^1.6.6",
     "unpic": "^3.10.0"
   },
   "devDependencies": {
@@ -34,7 +38,7 @@
     "@types/lodash.merge": "^4.6.7",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
-    "astro-compress": "^2.0.15",
+    "astro-compress": "^2.2.8",
     "eslint": "^8.49.0",
     "eslint-plugin-astro": "^0.29.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",

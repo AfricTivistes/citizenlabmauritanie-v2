@@ -13,16 +13,19 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const image = (await findImage(post.image));
+const image = await findImage(post.featuredImage?.node?.mediaItemUrl);
+const imageDefaut = 'https://citizenlabmauritanie.africtivistes.org/wp-content/uploads/2023/03/WhatsApp-Image-2023-02-19-at-19.43.53.jpeg';
+const src = image ? image : imageDefaut;
+
 ---
 
 <article class="mb-6 transition">
   <div class="relative md:h-64 bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6">
     {
-      image && (
+      src && (
         <a href={getPermalink(post.permalink, 'post')}>
           <Image
-            src={image}
+            src={src}
             class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
             widths={[400, 900]}
             width={400}
@@ -51,5 +54,5 @@ const image = (await findImage(post.image));
       )
     }
   </h3>
-  <p class="text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>
+  <p class="text-muted dark:text-slate-400 text-lg" set:html={post.excerpt}></p>
 </article>

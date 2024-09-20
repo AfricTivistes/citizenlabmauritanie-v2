@@ -16,19 +16,23 @@ export interface Props {
 }
 
 const { post } = Astro.props;
-const image = (await findImage(post.image)) as ImageMetadata | undefined;
+const datePost = Date.parse(post.date);
+const image = (await findImage(post.featuredImage?.node?.mediaItemUrl)) as ImageMetadata | undefined;
+const imageDefaut = 'https://citizenlabmauritanie.africtivistes.org/wp-content/uploads/2023/03/WhatsApp-Image-2023-02-19-at-19.43.53.jpeg';
+const src = image ? image : imageDefaut;
+
 
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 ${image ? 'md:grid-cols-2' : ''}`}>
+<article class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 ${src ? 'md:grid-cols-2' : ''}`}>
   {
-    image && (
+    src && (
       <a class="relative block group" href={link ?? 'javascript:void(0)'}>
         <div class="relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg">
-          {image && (
+          {src && (
             <Image
-              src={image}
+              src={src}
               class="absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700"
               widths={[400, 900]}
               width={900}
@@ -48,18 +52,12 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
       <div class="mb-1">
         <span class="text-sm">
           <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="capitalize hover:underline" href={getPermalink(post.category, 'category')}>
-                  {post.category.replaceAll('-', ' ')}
-                </a>
-              </>
-            )
-          }
+          <time datetime={String(post.date)} class="inline-block">{getFormattedDate(datePost)}</time>
+            {' '} · {' '}
+          { post.categories?.nodes.map(category => {
+                    return (
+                      <a class='capitalize hover:underline' href={category.permalink}>{category.name}</a>)
+          })}
         </span>
       </div>
       <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
@@ -75,9 +73,9 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
       </h2>
     </header>
 
-    {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
+    {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg" set:html={post.excerpt}></p>}
     <footer class="mt-5">
-      <PostTags tags={post.tags} />
+      <PostTags tags={post.terms?.nodes.map(tag => tag.slug)} class="mr-5" />
     </footer>
   </div>
 </article>

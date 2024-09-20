@@ -10,6 +10,7 @@ import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
+import astroI18next from "astro-i18next";
 
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
@@ -32,6 +33,7 @@ export default defineConfig({
   output: 'static',
 
   integrations: [
+    astroI18next(),
     tailwind({
       applyBaseStyles: false,
     }),
@@ -50,6 +52,10 @@ export default defineConfig({
           'voice-presentation',
           'business-contact',
           'database',
+          'todo-list',
+          'page-template',
+
+
         ],
       },
     }),
