@@ -138,42 +138,62 @@ export async function getNodeByURI(uri) {
   return data;
 }
 export async function getAllUris() {
-  const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: `query GetAllUris {
-            posts(first: 100) {
-              nodes {
-                uri
-              }
+  let allUris = [];
+  let afterCursor = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `query GetAllUris($after: String) {
+          posts(first: 50, after: $after) {
+            pageInfo {
+              hasNextPage
+              endCursor
             }
-            pages {
-              nodes {
-                uri
-              }
+            nodes {
+              uri
             }
           }
-          `
-    })
-  });
-  const { data } = await response.json();
-  const uris = Object.values(data)
-    .reduce(function (acc, currentValue) {
-      return acc.concat(currentValue.nodes)
-    }, [])
+          pages {
+            nodes {
+              uri
+            }
+          }
+        }`,
+        variables: { after: afterCursor }
+      })
+    });
+
+    const { data } = await response.json();
+    const postsData = data?.posts;
+    const pagesData = data?.pages?.nodes || [];
+
+    if (postsData) {
+      allUris = [...allUris, ...postsData.nodes, ...pagesData];
+      hasNextPage = postsData.pageInfo.hasNextPage;
+      afterCursor = postsData.pageInfo.endCursor;
+    } else {
+      hasNextPage = false;
+    }
+  }
+
+  // Nettoyage des URI
+  return allUris
     .filter(node => node.uri !== null)
     .map(node => {
       let trimmedURI = node.uri.substring(1);
-      trimmedURI = trimmedURI.substring(0, trimmedURI.length - 1)
+      trimmedURI = trimmedURI.substring(0, trimmedURI.length - 1);
       return {
         params: {
           uri: decodeURI(trimmedURI)
         }
-      }
-    })
-    return uris;
+      };
+    });
 }
+
 
 export async function findLatestPostsAPI(lang) {
   const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
@@ -216,46 +236,69 @@ export async function findLatestPostsAPI(lang) {
   return data.posts.nodes;
 }
 export async function newsPagePostsQuery(lang) {
-  const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query: `{
-                  posts(first:1000, where: {language: ${lang}}) {
-                    nodes {
-                      date
-                      permalink: uri
-                      title
-                      commentCount
-                      excerpt
-                      categories {
-                        nodes {
-                          name
-                          permalink: uri
-                        }
-                      }
-                       terms {
-                        nodes {
-                          name
-                          slug
-                          permalink:uri
-                        }
-                      }
-                      featuredImage {
-                        node {
-                          mediaItemUrl
-                          altText
-                        }
-                      }
-                    }
+  let allPosts = [];
+  let afterCursor = null;
+  let hasNextPage = true;
+
+  while (hasNextPage) {
+    const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query Posts($lang: LanguageCodeFilterEnum, $after: String) {
+            posts(where: {language: $lang}, first: 50, after: $after) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
+              nodes {
+                date
+                permalink: uri
+                title
+                commentCount
+                excerpt
+                categories {
+                  nodes {
+                    name
+                    permalink: uri
                   }
                 }
-              `
-    })
-  });
-  const { data } = await response.json();
-  return data.posts.nodes;
+                terms {
+                  nodes {
+                    name
+                    slug
+                    permalink: uri
+                  }
+                }
+                featuredImage {
+                  node {
+                    mediaItemUrl
+                    altText
+                  }
+                }
+              }
+            }
+          }
+        `,
+        variables: { lang, after: afterCursor }
+      })
+    });
+
+    const { data } = await response.json();
+    const postsData = data?.posts;
+
+    if (postsData) {
+      allPosts = [...allPosts, ...postsData.nodes]; // Ajouter les nouveaux posts à la liste
+      hasNextPage = postsData.pageInfo.hasNextPage;
+      afterCursor = postsData.pageInfo.endCursor;
+    } else {
+      hasNextPage = false; // Arrêter en cas d'erreur
+    }
+  }
+  return allPosts;
 }
+
 
 export async function getAllMembers() {
   const response = await fetch(import.meta.env.WORDPRESS_API_URL, {

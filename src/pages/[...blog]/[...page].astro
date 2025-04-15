@@ -6,10 +6,10 @@ import Headline from "~/components/blog/Headline.astro";
 import Pagination from "~/components/blog/Pagination.astro";
 // import PostTags from "~/components/blog/Tags.astro";
 import { blogListRobots, getStaticPathsBlogList } from "~/utils/blog";
+import Search from "astro-pagefind/components/Search";
 
 changeLanguage("fr");
 
-;
 export const prerender = true;
 export async function getStaticPaths({ paginate }) {
     return await getStaticPathsBlogList({ paginate });
@@ -37,6 +37,8 @@ const metadata = {
     >
       {t('navigation.actualites')}
     </Headline>
+    <Search id="search1" className="pagefind-ui mb-5" uiOptions={{ showImages: true }} />
+        <aside data-pagefind-ignore></aside>
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
     <!--

@@ -76,9 +76,8 @@ export const footerData = {
     {
       title: "Nous Contacter",
       links:[
-        { text: "citizenlabbenin@africtivistes.org", href:'mailto:citizenlabbenin@africtivistes.org ' },
-        { text: "+229 97 39 99 953", href: 'tel:0022997399995'},
-        {text: "Cotonou, Benin", href: '#'}
+        { text: "info@africtivistes.org", href:'mailto:info@africtivistes.org ' },
+        { text: "Nouakchott, Mauritanie", href: '#'}
       ]
     }
   ],
@@ -87,12 +86,12 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { icon: 'tabler:brand-x', href: 'https://twitter.com/BeninCitizenlab' },
-    { icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/citizenlabbenin/' },
-    { icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/profile.php?id=61553614994311' },
-    { icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/citizen-lab-benin/about/' },
-    { icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { icon: 'tabler:brand-github', href: 'https://github.com/AfricTivistes/citizenlabbenin' },
+    { icon: 'tabler:brand-x', href: 'https://x.com/CitizenLab_RIM' },
+    { icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/citizenlabrim/' },
+    { icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/AfriCitizenLabRIM/' },
+    { icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/company/citizenlabrim/' },
+    { icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/channel/UCpkvxKTj6pntvogDzqFlfRg' },
+    { icon: 'tabler:brand-github', href: 'https://github.com/AfricTivistes/citizenlabmauritanie' },
   ],
   footNote: `
   <a href="https://www.africtivistes.com" target= '_blank'>

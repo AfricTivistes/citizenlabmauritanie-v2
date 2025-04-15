@@ -11,6 +11,7 @@ import compress from 'astro-compress';
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 import astroI18next from "astro-i18next";
+import pagefind from "astro-pagefind";
 
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
@@ -31,6 +32,9 @@ export default defineConfig({
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
   output: 'static',
+  build: {
+    format: "file",
+  },
 
   integrations: [
     astroI18next(),
@@ -38,6 +42,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap(),
+    pagefind(),
     mdx(),
     icon({
       include: {
